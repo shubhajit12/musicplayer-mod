@@ -1,0 +1,11 @@
+{
+  "required": true,
+  "package": "com.musicplayer.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "client": [
+    "MusicMixinSuppressor"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
