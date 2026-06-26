@@ -150,14 +150,14 @@ public class MusicCommand {
                     // /music queue
                     .then(literal("queue")
                         .executes(ctx -> {
-                            Playlist playlist = PlaylistManager.getInstance().getCurrentPlaylist();
+                            Playlist playlist = PlaylistManager.getPlaylist();
                             if (playlist == null || playlist.getTracks().isEmpty()) {
                                 sendFeedback("Playlist is empty. Add tracks via /music play <url> or open the GUI with /music open.");
                                 return 1;
                             }
                             List<Track> tracks = playlist.getTracks();
                             sendFeedback("-- Playlist (" + tracks.size() + " tracks) --");
-                            int currentIndex = PlaylistManager.getInstance().getCurrentIndex();
+                            int currentIndex = 0;
                             for (int i = 0; i < tracks.size(); i++) {
                                 Track t = tracks.get(i);
                                 String marker = (i == currentIndex) ? " ◀ NOW" : "";
