@@ -8,11 +8,14 @@ jobs:
       - uses: actions/setup-java@v4
         with:
           java-version: '21'
-          distribution: 'temurin'
-      - name: Fix gradle.properties
+          distribution: temurin
+      - name: Install Gradle
         run: |
-          sed -i 's/yarn_mappings=.*/yarn_mappings=1.21.11+build.1/' gradle.properties
-          sed -i 's/fabric_version=.*/fabric_version=0.119.3+1.21.11/' gradle.properties
-          cat gradle.properties
-      - name: Setup Gradle
-        uses:
+          wget https://services.gradle.org/distributions/gradle-8.8-bin.zip
+          unzip gradle-8.8-bin.zip
+          export PATH=$PWD/gradle-8.8/bin:$PATH
+          gradle build
+      - uses: actions/upload-artifact@v4
+        with:
+          name: musicplayer-jar
+          path: build/libs/*.jar
