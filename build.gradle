@@ -27,8 +27,6 @@ dependencies {
     // LavaPlayer — full audio engine (YouTube, SoundCloud, Bandcamp, local files, HTTP streams, etc.)
     implementation("dev.arbjerg:lavaplayer:${project.lavaplayer_version}")
     include("dev.arbjerg:lavaplayer:${project.lavaplayer_version}")
-    implementation("com.sedmelluq:lava-common:1.1.2")
-    include("com.sedmelluq:lava-common:1.1.2")
 
     // Gson (bundled with MC but explicit for IDE)
     implementation 'com.google.code.gson:gson:2.10.1'
