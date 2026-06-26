@@ -9,13 +9,10 @@ jobs:
         with:
           java-version: '21'
           distribution: 'temurin'
+      - name: Fix gradle.properties
+        run: |
+          sed -i 's/yarn_mappings=.*/yarn_mappings=1.21.11+build.1/' gradle.properties
+          sed -i 's/fabric_version=.*/fabric_version=0.119.3+1.21.11/' gradle.properties
+          cat gradle.properties
       - name: Setup Gradle
-        uses: gradle/actions/setup-gradle@v3
-        with:
-          gradle-version: '8.8'
-      - name: Build
-        run: gradle build
-      - uses: actions/upload-artifact@v4
-        with:
-          name: musicplayer-jar
-          path: build/libs/*.jar
+        uses:
