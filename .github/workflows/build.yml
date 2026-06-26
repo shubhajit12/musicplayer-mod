@@ -1,21 +1,9 @@
-name: Build Mod
-on: [push]
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    timeout-minutes: 30
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-java@v4
-        with:
-          java-version: '21'
-          distribution: temurin
-      - name: Build
+- name: Build
         run: |
           wget -q https://services.gradle.org/distributions/gradle-8.11-bin.zip
           unzip -q gradle-8.11-bin.zip
+          sed -i 's/yarn_mappings=.*/yarn_mappings=1.21.1+build.3/' gradle.properties
+          sed -i 's/minecraft_version=.*/minecraft_version=1.21.1/' gradle.properties
+          sed -i 's/fabric_version=.*/fabric_version=0.102.0+1.21.1/' gradle.properties
+          cat gradle.properties
           ./gradle-8.11/bin/gradle build --no-daemon
-      - uses: actions/upload-artifact@v4
-        with:
-          name: musicplayer-jar
-          path: build/libs/*.jar
